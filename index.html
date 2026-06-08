@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cuisine — Minimal Cookbook</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loader" id="loader">
+  <div class="dots">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- Liquid Glass Navigation -->
+<nav class="nav-glass">
+  <div class="nav-inner">
+    <div class="logo">Cuisine<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+      <li><a href="#recipes" class="nav-link" data-page="recipes">Recipes</a></li>
+      <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <div class="dot-indicator"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- Parallax Wrapper -->
+<div class="parallax-wrapper" id="parallax">
+
+  <!-- HOME PAGE -->
+  <section class="page home-page active" id="page-home">
+    <div class="hero" data-depth="0.02">
+      <div class="hero-tag">— Est. Kitchen</div>
+      <h1 class="hero-title">The art of<br/><em>simple</em> cooking.</h1>
+      <p class="hero-sub">Interactive recipes. Three-dimensional guidance. One dish at a time.</p>
+      <button class="cta-btn" onclick="switchPage('recipes')">
+        Explore Recipes
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="floating-orb orb-1" data-depth="0.08"></div>
+    <div class="floating-orb orb-2" data-depth="0.05"></div>
+    <div class="floating-orb orb-3" data-depth="0.12"></div>
+  </section>
+
+  <!-- RECIPES LIST PAGE -->
+  <section class="page recipes-page" id="page-recipes">
+    <div class="page-header" data-depth="0.02">
+      <div class="section-tag">— Collection</div>
+      <h2>Recipes</h2>
+      <p class="page-sub">Four dishes. Drag to explore.</p>
+    </div>
+
+    <div class="recipes-list">
+      <!-- Recipe 1 -->
+      <article class="recipe-card" onclick="openRecipe(0)">
+        <div class="recipe-canvas-wrap">
+          <div class="three-canvas" data-model="0" data-preview="true"></div>
+          <div class="drag-hint">drag</div>
+        </div>
+        <div class="recipe-info">
+          <div class="recipe-num">01</div>
+          <h3>Heirloom Tomato Pasta</h3>
+          <p>Slow-simmered tomatoes, fresh basil, and hand-rolled pasta. A study in restraint.</p>
+          <div class="recipe-meta">
+            <span>25 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recipe 2 -->
+      <article class="recipe-card" onclick="openRecipe(1)">
+        <div class="recipe-canvas-wrap">
+          <div class="three-canvas" data-model="1" data-preview="true"></div>
+          <div class="drag-hint">drag</div>
+        </div>
+        <div class="recipe-info">
+          <div class="recipe-num">02</div>
+          <h3>Wild Mushroom Risotto</h3>
+          <p>Arborio rice, porcini, parmigiano. Patience translated into texture.</p>
+          <div class="recipe-meta">
+            <span>40 min</span><span>·</span><span>4 steps</span><span>·</span><span>Medium</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recipe 3 -->
+      <article class="recipe-card" onclick="openRecipe(2)">
+        <div class="recipe-canvas-wrap">
+          <div class="three-canvas" data-model="2" data-preview="true"></div>
+          <div class="drag-hint">drag</div>
+        </div>
+        <div class="recipe-info">
+          <div class="recipe-num">03</div>
+          <h3>Citrus Glazed Salmon</h3>
+          <p>Atlantic salmon, blood orange, honey. Bright, balanced, beautifully simple.</p>
+          <div class="recipe-meta">
+            <span>20 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recipe 4 -->
+      <article class="recipe-card" onclick="openRecipe(3)">
+        <div class="recipe-canvas-wrap">
+          <div class="three-canvas" data-model="3" data-preview="true"></div>
+          <div class="drag-hint">drag</div>
+        </div>
+        <div class="recipe-info">
+          <div class="recipe-num">04</div>
+          <h3>Dark Chocolate Soufflé</h3>
+          <p>70% cocoa, whipped egg whites, a whisper of vanilla. The rise is the reward.</p>
+          <div class="recipe-meta">
+            <span>35 min</span><span>·</span><span>4 steps</span><span>·</span><span>Hard</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- RECIPE DETAIL PAGE -->
+  <section class="page recipe-detail-page" id="page-detail">
+    <button class="back-btn" onclick="switchPage('recipes')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Back to recipes
+    </button>
+
+    <div class="detail-header" data-depth="0.02">
+      <div class="section-tag">— <span id="detail-meta">Step 1 of 4</span></div>
+      <h2 id="detail-title">Recipe Title</h2>
+    </div>
+
+    <div class="step-container">
+      <!-- Left Arrow -->
+      <button class="step-arrow arrow-left" id="prev-btn" onclick="prevStep()">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <!-- Step Description (left side) -->
+      <div class="step-description">
+        <div class="step-num" id="step-num">01</div>
+        <h3 id="step-title">Step Title</h3>
+        <p id="step-text">Step description goes here.</p>
+        <div class="step-progress">
+          <div class="progress-dots" id="progress-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three.js Model (center) -->
+      <div class="step-canvas-wrap">
+        <div class="three-canvas-large" id="step-canvas"></div>
+        <div class="drag-hint-large">drag to rotate · scroll to zoom</div>
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="step-arrow arrow-right" id="next-btn" onclick="nextStep()">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ABOUT PAGE -->
+  <section class="page about-page" id="page-about">
+    <div class="about-content" data-depth="0.02">
+      <div class="section-tag">— About</div>
+      <h2>Cooking, reframed.</h2>
+      <p>Cuisine is a quiet experiment in how we learn to cook. Instead of dense text and flat photos, every step is a sculpted three-dimensional moment you can hold, turn, and study.</p>
+      <p>We believe great food begins with attention. So we removed everything that wasn't necessary — and built what remained beautifully.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Three.js -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+</body>
+</html>

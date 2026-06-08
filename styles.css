@@ -1,0 +1,529 @@
+/* ========== Reset & Base ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(60,60,80,0.18), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(40,40,60,0.15), transparent 50%),
+    #000;
+}
+
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; color: inherit; font-family: inherit; cursor: pointer; }
+
+/* ========== Loader ========== */
+.loader {
+  position: fixed; inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader.hidden { opacity: 0; visibility: hidden; }
+
+.dots {
+  display: flex; gap: 8px;
+}
+.dots span {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+.dots span:nth-child(2) { animation-delay: 0.15s; }
+.dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ========== Liquid Glass Nav ========== */
+.nav-glass {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 4px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.nav-glass::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(255,255,255,0.02) 100%);
+  pointer-events: none;
+}
+
+.nav-inner {
+  display: flex; align-items: center;
+  padding: 8px 20px;
+  gap: 36px;
+  position: relative;
+}
+
+.logo {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.logo span { color: rgba(255,255,255,0.5); }
+
+.nav-links {
+  display: flex; list-style: none; gap: 4px;
+}
+.nav-link {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 100px;
+  color: rgba(255,255,255,0.65);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-link:hover { color: rgba(255,255,255,0.95); }
+.nav-link.active {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.dot-indicator {
+  display: flex; gap: 4px;
+}
+.dot-indicator span {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+.dot-indicator span:nth-child(2) { background: rgba(255,255,255,0.6); }
+.dot-indicator span:nth-child(3) { background: rgba(255,255,255,0.9); }
+
+/* ========== Parallax Wrapper ========== */
+.parallax-wrapper {
+  position: relative;
+  min-height: 100vh;
+  transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+
+/* ========== Pages ========== */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 140px 8vw 80px;
+  animation: pageIn 0.6s cubic-bezier(.2,.8,.2,1);
+}
+.page.active { display: block; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Home Page ========== */
+.home-page {
+  display: none;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.home-page.active { display: flex; align-items: center; }
+
+.hero {
+  position: relative; z-index: 2;
+  max-width: 720px;
+}
+.hero-tag {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-bottom: 32px;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+}
+.hero-sub {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 48px;
+}
+
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+}
+.cta-btn:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.cta-btn svg { transition: transform 0.3s ease; }
+.cta-btn:hover svg { transform: translateX(4px); }
+
+/* Floating Orbs */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+  will-change: transform;
+}
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(120, 80, 200, 0.5), transparent 70%);
+  top: 10%; right: 10%;
+}
+.orb-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(80, 160, 200, 0.4), transparent 70%);
+  bottom: 20%; right: 30%;
+}
+.orb-3 {
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(200, 100, 120, 0.35), transparent 70%);
+  top: 40%; left: 5%;
+}
+
+/* ========== Section Headers ========== */
+.section-tag, .hero-tag {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.page-header h2, .about-content h2, .detail-header h2 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.page-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  margin-bottom: 64px;
+}
+
+/* ========== Recipes List ========== */
+.recipes-list {
+  display: flex; flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recipe-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: all 0.4s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.recipe-card:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.14);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.recipe-card:nth-child(even) { grid-template-columns: 1fr 1fr; }
+.recipe-card:nth-child(even) .recipe-canvas-wrap { order: 2; }
+.recipe-card:nth-child(even) .recipe-info { order: 1; }
+
+.recipe-canvas-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.04), rgba(0,0,0,0.4));
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.three-canvas {
+  width: 100%; height: 100%;
+  position: relative;
+}
+.three-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.drag-hint {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.recipe-info { padding: 16px 8px; }
+.recipe-num {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.recipe-info h3 {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.recipe-info p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.recipe-meta {
+  display: flex; gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em;
+}
+
+/* ========== Recipe Detail Page ========== */
+.recipe-detail-page {
+  display: none;
+  min-height: 100vh;
+  padding: 120px 6vw 60px;
+}
+.recipe-detail-page.active { display: block; }
+
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.detail-header { margin-bottom: 48px; }
+
+.step-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 40px;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.step-description {
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.step-num {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+.step-description h3 {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.step-description p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.progress-dots {
+  display: flex; gap: 8px;
+}
+.progress-dots .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+.progress-dots .dot.active {
+  background: rgba(255,255,255,0.9);
+  width: 24px;
+  border-radius: 100px;
+}
+.progress-dots .dot.done {
+  background: rgba(255,255,255,0.5);
+}
+
+.step-canvas-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-height: 70vh;
+  border-radius: 28px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), rgba(0,0,0,0.5));
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.4);
+}
+.three-canvas-large {
+  width: 100%; height: 100%;
+}
+.three-canvas-large canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.drag-hint-large {
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.5);
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Step Arrows */
+.step-arrow {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+  justify-self: center;
+}
+.step-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.step-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ========== About ========== */
+.about-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.about-content p {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 900px) {
+  .nav-inner { gap: 16px; padding: 6px 12px; }
+  .nav-links { gap: 0; }
+  .nav-link { padding: 6px 10px; font-size: 12px; }
+  .logo { font-size: 13px; }
+
+  .recipe-card {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    padding: 20px;
+  }
+  .recipe-card:nth-child(even) .recipe-canvas-wrap { order: 0; }
+  .recipe-card:nth-child(even) .recipe-info { order: 0; }
+
+  .step-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .step-arrow {
+    position: fixed;
+    bottom: 24px;
+    z-index: 50;
+  }
+  .arrow-left { left: 24px; }
+  .arrow-right { right: 24px; }
+
+  .page { padding: 110px 6vw 60px; }
+}
