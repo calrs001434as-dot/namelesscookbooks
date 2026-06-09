@@ -42,7 +42,7 @@ const recipes = [
       '½ cup water'
     ],
     steps: [
-      { title: 'Prepare mise en place', text: 'Preheat oven to 175°C (350°F). Grease and flour two 9-inch round cake pans. Whisk together flour, baking powder, and salt in a bowl.', modelUrl: '', fallbackShape: 'bowl' },
+      { title: 'Prepare mix and place', text: 'Preheat oven to 175°C (350°F). Grease and flour two 9-inch round cake pans. Whisk together flour, baking powder, and salt in a bowl.', modelUrl: '', fallbackShape: 'bowl' },
       { title: 'Cream butter and sugar', text: 'Beat softened butter and sugar together until light and fluffy, about 3-4 minutes. Add eggs one at a time, beating well after each addition.', modelUrl: '', fallbackShape: 'bowl' },
       { title: 'Combine wet and dry', text: 'Mix in vanilla extract. Add one-third of dry ingredients, then half the milk, alternating and ending with dry ingredients. Mix gently until just combined.', modelUrl: '', fallbackShape: 'pot' },
       { title: 'Bake and cool', text: 'Divide batter equally between pans. Bake for 25-30 minutes until a toothpick comes out clean. Cool in pans for 10 minutes, then transfer to wire rack.', modelUrl: '', fallbackShape: 'plate' },
