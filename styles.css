@@ -1,4 +1,3 @@
-/* ========== Reset & Base ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
@@ -6,23 +5,18 @@ html, body {
   color: #fff;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 300;
-  overflow-x: hidden;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   cursor: default;
 }
 
 body {
-  background:
-    radial-gradient(ellipse at 20% 10%, rgba(60,60,80,0.18), transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(40,40,60,0.15), transparent 50%),
-    #000;
+  background: #000;
 }
 
 a { color: inherit; text-decoration: none; }
 button { background: none; border: none; color: inherit; font-family: inherit; cursor: pointer; }
 
-/* ========== Loader ========== */
 .loader {
   position: fixed; inset: 0;
   background: #000;
@@ -49,7 +43,11 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   40% { opacity: 1; transform: scale(1.1); }
 }
 
-/* ========== Liquid Glass Nav ========== */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .nav-glass {
   position: fixed;
   top: 18px;
@@ -129,7 +127,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   will-change: transform;
 }
 
-/* ========== Pages ========== */
 .page {
   display: none;
   min-height: 100vh;
@@ -138,12 +135,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
 }
 .page.active { display: block; }
 
-@keyframes pageIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ========== Home Page ========== */
 .home-page {
   display: none;
   min-height: 100vh;
@@ -209,30 +200,18 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
 
 /* Floating Orbs */
 .floating-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.4;
-  pointer-events: none;
-  will-change: transform;
+  display: none;
 }
 .orb-1 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(120, 80, 200, 0.5), transparent 70%);
-  top: 10%; right: 10%;
+  display: none;
 }
 .orb-2 {
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(80, 160, 200, 0.4), transparent 70%);
-  bottom: 20%; right: 30%;
+  display: none;
 }
 .orb-3 {
-  width: 250px; height: 250px;
-  background: radial-gradient(circle, rgba(200, 100, 120, 0.35), transparent 70%);
-  top: 40%; left: 5%;
+  display: none;
 }
 
-/* ========== Section Headers ========== */
 .section-tag, .hero-tag {
   font-size: 12px;
   font-weight: 400;
@@ -255,7 +234,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   margin-bottom: 64px;
 }
 
-/* ========== Recipes List ========== */
 .recipes-list {
   display: flex; flex-direction: column;
   gap: 32px;
@@ -294,15 +272,24 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   position: relative;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.04), rgba(0,0,0,0.4));
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 .three-canvas {
   width: 100%; height: 100%;
   position: relative;
 }
 .three-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+.three-canvas.recipe-image {
+  background-size: cover;
+  background-position: center;
+}
 
 .drag-hint {
   position: absolute;
@@ -346,7 +333,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   letter-spacing: 0.05em;
 }
 
-/* ========== Recipe Detail Page ========== */
 .recipe-detail-page {
   display: none;
   min-height: 100vh;
@@ -372,6 +358,235 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
 }
 
 .detail-header { margin-bottom: 48px; }
+
+/* ========== INGREDIENTS VIEW ========== */
+.ingredients-view {
+  display: none;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+.ingredients-view.active { display: block; }
+
+.ingredients-container {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  gap: 60px;
+  align-items: center;
+  min-height: 70vh;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.ingredients-list {
+  padding: 60px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.3);
+}
+
+.ingredients-title-small {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.ingredients-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ingredient-item {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ingredient-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ingredients-arrow {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+}
+.ingredients-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.ingredients-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.tutorial-view {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
+.tutorial-view.active { display: block; }
+
+.tutorial-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1;
+}
+
+.three-canvas-large {
+  width: 100%;
+  height: 100%;
+}
+.three-canvas-large canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.drag-hint-large {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4);
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tutorial-description {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 380px;
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  z-index: 20;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.tutorial-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.tutorial-description h3 {
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.tutorial-description p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.step-progress {
+  display: flex;
+  gap: 8px;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 8px;
+}
+.progress-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+.progress-dots .dot.active {
+  background: rgba(255,255,255,0.9);
+  width: 24px;
+  border-radius: 100px;
+}
+.progress-dots .dot.done {
+  background: rgba(255,255,255,0.5);
+}
+
+/* Step Arrows */
+.tutorial-arrow {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+  z-index: 30;
+}
+.arrow-left {
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.arrow-right {
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tutorial-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.tutorial-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
 
 .step-container {
   position: relative;
@@ -411,24 +626,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   margin-bottom: 32px;
 }
 
-.progress-dots {
-  display: flex; gap: 8px;
-}
-.progress-dots .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: all 0.3s ease;
-}
-.progress-dots .dot.active {
-  background: rgba(255,255,255,0.9);
-  width: 24px;
-  border-radius: 100px;
-}
-.progress-dots .dot.done {
-  background: rgba(255,255,255,0.5);
-}
-
 .step-canvas-wrap {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -439,28 +636,7 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px rgba(0,0,0,0.4);
 }
-.three-canvas-large {
-  width: 100%; height: 100%;
-}
-.three-canvas-large canvas { display: block; width: 100% !important; height: 100% !important; }
 
-.drag-hint-large {
-  position: absolute;
-  bottom: 16px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.5);
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  pointer-events: none;
-}
-
-/* Step Arrows */
 .step-arrow {
   width: 56px; height: 56px;
   border-radius: 50%;
@@ -485,7 +661,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   cursor: not-allowed;
 }
 
-/* ========== About ========== */
 .about-content {
   max-width: 720px;
   margin: 0 auto;
@@ -498,7 +673,6 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   margin-bottom: 24px;
 }
 
-/* ========== Responsive ========== */
 @media (max-width: 900px) {
   .nav-inner { gap: 16px; padding: 6px 12px; }
   .nav-links { gap: 0; }
@@ -513,17 +687,53 @@ button { background: none; border: none; color: inherit; font-family: inherit; c
   .recipe-card:nth-child(even) .recipe-canvas-wrap { order: 0; }
   .recipe-card:nth-child(even) .recipe-info { order: 0; }
 
-  .step-container {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .step-arrow {
-    position: fixed;
-    bottom: 24px;
-    z-index: 50;
-  }
-  .arrow-left { left: 24px; }
-  .arrow-right { right: 24px; }
-
   .page { padding: 110px 6vw 60px; }
+  
+  /* Ingredients view responsive */
+  .ingredients-container {
+    grid-template-columns: 50px 1fr 50px;
+    gap: 20px;
+    min-height: 60vh;
+  }
+  
+  .ingredients-list {
+    padding: 40px;
+  }
+  
+  .ingredients-arrow {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Tutorial view responsive */
+  .tutorial-description {
+    width: 300px;
+    padding: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .tutorial-description h3 {
+    font-size: 18px;
+  }
+  
+  .tutorial-description p {
+    font-size: 13px;
+  }
+  
+  .tutorial-arrow {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .tutorial-arrow svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .drag-hint-large {
+    font-size: 10px;
+    bottom: 20px;
+    padding: 6px 12px;
+  }
 }
