@@ -26,7 +26,7 @@ const recipes = [
     ]
   },
   {
-    title: 'Basic Vanilla Cake',
+    title: 'Choco-Vanila Cake',
     modelUrl: '',
     fallbackShape: 'souffle',
     ingredients: [
