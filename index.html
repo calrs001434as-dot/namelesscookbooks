@@ -11,14 +11,12 @@
 </head>
 <body>
 
-<!-- Loading Screen -->
 <div class="loader" id="loader">
   <div class="dots">
     <span></span><span></span><span></span>
   </div>
 </div>
 
-<!-- Liquid Glass Navigation -->
 <nav class="nav-glass">
   <div class="nav-inner">
     <div class="logo">Cuisine<span>.</span></div>
@@ -33,17 +31,15 @@
   </div>
 </nav>
 
-<!-- Parallax Wrapper -->
 <div class="parallax-wrapper" id="parallax">
 
-  <!-- HOME PAGE -->
   <section class="page home-page active" id="page-home">
     <div class="hero" data-depth="0.02">
-      <div class="hero-tag">— Est. Kitchen</div>
-      <h1 class="hero-title">The art of<br/><em>simple</em> cooking.</h1>
-      <p class="hero-sub">Interactive recipes. Three-dimensional guidance. One dish at a time.</p>
+      <div class="hero-tag">Nameless Cooking</div>
+      <h1 class="hero-title">Cook with confidence.</h1>
+      <p class="hero-sub">By Arkin Samanta</p>
       <button class="cta-btn" onclick="switchPage('recipes')">
-        Explore Recipes
+        Recipes
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -52,102 +48,111 @@
     <div class="floating-orb orb-3" data-depth="0.12"></div>
   </section>
 
-  <!-- RECIPES LIST PAGE -->
   <section class="page recipes-page" id="page-recipes">
     <div class="page-header" data-depth="0.02">
-      <div class="section-tag">— Collection</div>
-      <h2>Recipes</h2>
-      <p class="page-sub">Four dishes. Drag to explore.</p>
+      <div class="section-tag"> - Recipes</div>
     </div>
 
     <div class="recipes-list">
-      <!-- Recipe 1 -->
       <article class="recipe-card" onclick="openRecipe(0)">
-        <div class="recipe-canvas-wrap">
-          <div class="three-canvas" data-model="0" data-preview="true"></div>
-          <div class="drag-hint">drag</div>
+        <div class="recipe-canvas-wrap" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561931?w=500&h=500&fit=crop');">
+          <div class="drag-hint">click to view</div>
         </div>
         <div class="recipe-info">
           <div class="recipe-num">01</div>
-          <h3>Heirloom Tomato Pasta</h3>
-          <p>Slow-simmered tomatoes, fresh basil, and hand-rolled pasta. A study in restraint.</p>
+          <h3>Poutine</h3>
+          <p>Crispy fries, melted cheese curds, and savory gravy. A Canadian classic comfort food.</p>
           <div class="recipe-meta">
-            <span>25 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
+            <span>45 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
           </div>
         </div>
       </article>
 
-      <!-- Recipe 2 -->
       <article class="recipe-card" onclick="openRecipe(1)">
-        <div class="recipe-canvas-wrap">
-          <div class="three-canvas" data-model="1" data-preview="true"></div>
-          <div class="drag-hint">drag</div>
+        <div class="recipe-canvas-wrap" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&fit=crop');">
+          <div class="drag-hint">click to view</div>
         </div>
         <div class="recipe-info">
           <div class="recipe-num">02</div>
-          <h3>Wild Mushroom Risotto</h3>
-          <p>Arborio rice, porcini, parmigiano. Patience translated into texture.</p>
+          <h3>Basic Vanilla Cake</h3>
+          <p>Classic two-layer vanilla cake with perfect crumb and delicate vanilla flavor.</p>
           <div class="recipe-meta">
-            <span>40 min</span><span>·</span><span>4 steps</span><span>·</span><span>Medium</span>
+            <span>50 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
           </div>
         </div>
       </article>
 
-      <!-- Recipe 3 -->
       <article class="recipe-card" onclick="openRecipe(2)">
-        <div class="recipe-canvas-wrap">
-          <div class="three-canvas" data-model="2" data-preview="true"></div>
-          <div class="drag-hint">drag</div>
+        <div class="recipe-canvas-wrap" style="background-image: url('https://images.unsplash.com/photo-1565958011504-3aaf1d2e32b3?w=500&h=500&fit=crop');">
+          <div class="drag-hint">click to view</div>
         </div>
         <div class="recipe-info">
           <div class="recipe-num">03</div>
-          <h3>Citrus Glazed Salmon</h3>
-          <p>Atlantic salmon, blood orange, honey. Bright, balanced, beautifully simple.</p>
+          <h3>Chicken Tikka</h3>
+          <p>Tender spiced chicken marinated in yogurt and Indian spices, grilled to perfection.</p>
           <div class="recipe-meta">
-            <span>20 min</span><span>·</span><span>4 steps</span><span>·</span><span>Easy</span>
+            <span>30 min</span><span>·</span><span>4 steps</span><span>·</span><span>Medium</span>
           </div>
         </div>
       </article>
 
-      <!-- Recipe 4 -->
       <article class="recipe-card" onclick="openRecipe(3)">
-        <div class="recipe-canvas-wrap">
-          <div class="three-canvas" data-model="3" data-preview="true"></div>
-          <div class="drag-hint">drag</div>
+        <div class="recipe-canvas-wrap" style="background-image: url('https://images.unsplash.com/photo-1606312519507-b75caa716c0d?w=500&h=500&fit=crop');">
+          <div class="drag-hint">click to view</div>
         </div>
         <div class="recipe-info">
           <div class="recipe-num">04</div>
-          <h3>Dark Chocolate Soufflé</h3>
-          <p>70% cocoa, whipped egg whites, a whisper of vanilla. The rise is the reward.</p>
+          <h3>Rasmalai</h3>
+          <p>Soft cheese discs in aromatic cardamom and saffron milk. An Indian dessert delight.</p>
           <div class="recipe-meta">
-            <span>35 min</span><span>·</span><span>4 steps</span><span>·</span><span>Hard</span>
+            <span>4 hrs</span><span>·</span><span>4 steps</span><span>·</span><span>Hard</span>
           </div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- RECIPE DETAIL PAGE -->
   <section class="page recipe-detail-page" id="page-detail">
     <button class="back-btn" onclick="switchPage('recipes')">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
       Back to recipes
     </button>
 
-    <div class="detail-header" data-depth="0.02">
-      <div class="section-tag">— <span id="detail-meta">Step 1 of 4</span></div>
-      <h2 id="detail-title">Recipe Title</h2>
+    <div class="ingredients-view" id="ingredients-view">
+      <div class="detail-header" data-depth="0.02">
+        <div class="section-tag">— Ingredients</div>
+        <h2 id="ingredients-title">Ingredients</h2>
+      </div>
+
+      <div class="ingredients-container">
+        <button class="ingredients-arrow arrow-left" onclick="switchPage('recipes')">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="ingredients-list" id="ingredients-list">
+        </div>
+
+        <button class="ingredients-arrow arrow-right" onclick="startTutorial()">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
 
-    <div class="step-container">
-      <!-- Left Arrow -->
-      <button class="step-arrow arrow-left" id="prev-btn" onclick="prevStep()">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 18l-6-6 6-6"/></svg>
+    <div class="tutorial-view" id="tutorial-view">
+      <button class="back-btn" onclick="switchPage('recipes')" style="position: absolute; top: 120px; left: 40px; z-index: 40;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Back to recipes
       </button>
 
-      <!-- Step Description (left side) -->
-      <div class="step-description">
-        <div class="step-num" id="step-num">01</div>
+      <button class="tutorial-arrow arrow-left" id="prev-btn" onclick="prevStep()">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="tutorial-canvas-wrap" id="step-canvas"></div>
+      <div class="drag-hint-large">drag to rotate · scroll to zoom</div>
+
+      <div class="tutorial-description">
+        <div class="tutorial-meta" id="tutorial-meta">Step 1 of 4</div>
         <h3 id="step-title">Step Title</h3>
         <p id="step-text">Step description goes here.</p>
         <div class="step-progress">
@@ -160,23 +165,15 @@
         </div>
       </div>
 
-      <!-- Three.js Model (center) -->
-      <div class="step-canvas-wrap">
-        <div class="three-canvas-large" id="step-canvas"></div>
-        <div class="drag-hint-large">drag to rotate · scroll to zoom</div>
-      </div>
-
-      <!-- Right Arrow -->
-      <button class="step-arrow arrow-right" id="next-btn" onclick="nextStep()">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18l6-6-6-6"/></svg>
+      <button class="tutorial-arrow arrow-right" id="next-btn" onclick="nextStep()">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18l6-6-6-6"/></svg>
       </button>
     </div>
   </section>
 
-  <!-- ABOUT PAGE -->
   <section class="page about-page" id="page-about">
     <div class="about-content" data-depth="0.02">
-      <div class="section-tag">— About</div>
+      <div class="section-tag"> - About</div>
       <h2>Cooking, reframed.</h2>
       <p>Cuisine is a quiet experiment in how we learn to cook. Instead of dense text and flat photos, every step is a sculpted three-dimensional moment you can hold, turn, and study.</p>
       <p>We believe great food begins with attention. So we removed everything that wasn't necessary — and built what remained beautifully.</p>
@@ -185,7 +182,6 @@
 
 </div>
 
-<!-- Three.js -->
 <script type="importmap">
 {
   "imports": {
