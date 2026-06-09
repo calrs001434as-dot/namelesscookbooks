@@ -36,8 +36,10 @@ const recipes = [
       '1 cup unsalted butter, softened',
       '1½ cups granulated sugar',
       '3 large eggs, room temperature',
-      '1 tbsp vanilla extract',
-      '1 cup whole milk'
+      '1 cup of coco powder',
+      '1 cup whole milk',
+      '½ cup cooking oil',
+      '½ cup water'
     ],
     steps: [
       { title: 'Prepare mise en place', text: 'Preheat oven to 175°C (350°F). Grease and flour two 9-inch round cake pans. Whisk together flour, baking powder, and salt in a bowl.', modelUrl: '', fallbackShape: 'bowl' },
