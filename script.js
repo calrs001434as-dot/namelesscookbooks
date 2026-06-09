@@ -1,78 +1,110 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-/* ============================================
-   RECIPE DATA
-   - Replace `modelUrl` with your hosted .glb / .gltf URL.
-   - Each recipe has 4 steps, each step has its own model + text.
-============================================ */
 const recipes = [
   {
-    title: 'Heirloom Tomato Pasta',
-    // Final-product model shown on the recipe card
-    modelUrl: '', // <- put a .glb URL here for the finished dish
+    title: 'Poutine',
+    modelUrl: '',
     fallbackShape: 'pasta',
+    ingredients: [
+      '4 large russet potatoes',
+      '2 cups beef stock',
+      '1 cup chicken stock',
+      '2 tbsp cornstarch',
+      '2 tbsp water',
+      '2 tbsp unsalted butter',
+      '2 tbsp all-purpose flour',
+      '2 cups fresh cheese curds',
+      'Vegetable oil for frying',
+      'Salt'
+    ],
     steps: [
-      { title: 'Prepare ingredients', text: 'Gather heirloom tomatoes, fresh basil, garlic, olive oil, and high-quality pasta. Mise en place is the soul of the dish.', modelUrl: '', fallbackShape: 'tomato' },
-      { title: 'Simmer the sauce', text: 'Score and blanch tomatoes, slip off their skins, then crush gently into a pan with garlic and olive oil. Simmer twenty minutes.', modelUrl: '', fallbackShape: 'pot' },
-      { title: 'Cook the pasta', text: 'Salt the water generously. Cook pasta until just shy of al dente — it will finish in the sauce.', modelUrl: '', fallbackShape: 'pasta' },
-      { title: 'Plate and serve', text: 'Toss pasta with the sauce, finish with torn basil and a thread of olive oil. Serve immediately, while still glossy.', modelUrl: '', fallbackShape: 'plate' },
+      { title: 'Prepare the potatoes', text: 'Cut potatoes into thick fries. Soak in cold water for 30 minutes to remove starch. Drain and dry thoroughly with paper towels.', modelUrl: '', fallbackShape: 'potato' },
+      { title: 'First fry', text: 'Heat oil to 150°C (300°F). Fry potatoes for 5 minutes until soft but not browned. Remove and drain on paper towels.', modelUrl: '', fallbackShape: 'pan' },
+      { title: 'Make the gravy', text: 'Melt butter over medium heat. Whisk in flour for 2 minutes. Add beef and chicken stocks. Simmer, then whisk in cornstarch mixed with water. Season with salt.', modelUrl: '', fallbackShape: 'pot' },
+      { title: 'Finish and assemble', text: 'Heat oil to 200°C (400°F). Fry potatoes again for 3 minutes until golden crisp. Drain and season. Layer in bowl: fries, cheese curds, hot gravy to melt the cheese.', modelUrl: '', fallbackShape: 'plate' },
     ]
   },
   {
-    title: 'Wild Mushroom Risotto',
-    modelUrl: '',
-    fallbackShape: 'risotto',
-    steps: [
-      { title: 'Toast the rice', text: 'Warm arborio rice in butter and shallot until each grain turns translucent at the edges and softly pearlescent.', modelUrl: '', fallbackShape: 'pan' },
-      { title: 'Add the wine', text: 'Deglaze with dry white wine. Stir until the alcohol breathes off and the pan returns to a quiet simmer.', modelUrl: '', fallbackShape: 'pot' },
-      { title: 'Build with broth', text: 'Ladle hot mushroom broth in slowly. Stir, wait, repeat. Patience is the recipe.', modelUrl: '', fallbackShape: 'pot' },
-      { title: 'Finish with mushrooms', text: 'Fold in sautéed porcini, a generous knob of butter, and aged parmigiano. Rest one minute before plating.', modelUrl: '', fallbackShape: 'plate' },
-    ]
-  },
-  {
-    title: 'Citrus Glazed Salmon',
-    modelUrl: '',
-    fallbackShape: 'salmon',
-    steps: [
-      { title: 'Prepare the glaze', text: 'Reduce blood orange juice with honey, soy, and a whisper of ginger until it coats the back of a spoon.', modelUrl: '', fallbackShape: 'pot' },
-      { title: 'Sear the salmon', text: 'Pat the fillets dry. Sear skin-side down in a hot pan until the skin crackles and lifts cleanly.', modelUrl: '', fallbackShape: 'pan' },
-      { title: 'Glaze and finish', text: 'Brush the glaze over the salmon. Slide under a high broiler for ninety seconds, no more.', modelUrl: '', fallbackShape: 'salmon' },
-      { title: 'Plate with citrus', text: 'Rest the fillet on a bed of greens. Garnish with citrus segments and flake salt.', modelUrl: '', fallbackShape: 'plate' },
-    ]
-  },
-  {
-    title: 'Dark Chocolate Soufflé',
+    title: 'Basic Vanilla Cake',
     modelUrl: '',
     fallbackShape: 'souffle',
+    ingredients: [
+      '2½ cups all-purpose flour',
+      '2½ tsp baking powder',
+      '½ tsp salt',
+      '1 cup unsalted butter, softened',
+      '1½ cups granulated sugar',
+      '3 large eggs, room temperature',
+      '1 tbsp vanilla extract',
+      '1 cup whole milk'
+    ],
     steps: [
-      { title: 'Prepare ramekins', text: 'Butter each ramekin in upward strokes, then dust with fine sugar. The soufflé will climb the path you draw.', modelUrl: '', fallbackShape: 'ramekin' },
-      { title: 'Melt the chocolate', text: 'Melt 70% chocolate gently over a bain-marie with butter. Whisk in yolks one at a time off the heat.', modelUrl: '', fallbackShape: 'pot' },
-      { title: 'Whip the whites', text: 'Beat egg whites with a pinch of salt to soft peaks, then rain in sugar and continue to stiff, glossy peaks.', modelUrl: '', fallbackShape: 'bowl' },
-      { title: 'Fold and bake', text: 'Fold whites into chocolate in three additions. Bake at 200°C for twelve minutes. Serve the moment it rises.', modelUrl: '', fallbackShape: 'souffle' },
+      { title: 'Prepare mise en place', text: 'Preheat oven to 175°C (350°F). Grease and flour two 9-inch round cake pans. Whisk together flour, baking powder, and salt in a bowl.', modelUrl: '', fallbackShape: 'bowl' },
+      { title: 'Cream butter and sugar', text: 'Beat softened butter and sugar together until light and fluffy, about 3-4 minutes. Add eggs one at a time, beating well after each addition.', modelUrl: '', fallbackShape: 'bowl' },
+      { title: 'Combine wet and dry', text: 'Mix in vanilla extract. Add one-third of dry ingredients, then half the milk, alternating and ending with dry ingredients. Mix gently until just combined.', modelUrl: '', fallbackShape: 'pot' },
+      { title: 'Bake and cool', text: 'Divide batter equally between pans. Bake for 25-30 minutes until a toothpick comes out clean. Cool in pans for 10 minutes, then transfer to wire rack.', modelUrl: '', fallbackShape: 'plate' },
+    ]
+  },
+  {
+    title: 'Chicken Tikka',
+    modelUrl: '',
+    fallbackShape: 'salmon',
+    ingredients: [
+      '500g boneless chicken thighs, cubed',
+      '1 cup thick plain yogurt',
+      '1 tbsp ginger paste',
+      '1 tbsp garlic paste',
+      '2 tsp Kashmiri red chili powder',
+      '1 tsp garam masala',
+      '1 tsp roasted cumin powder',
+      '1 tbsp lemon juice',
+      '2 tbsp mustard oil',
+      'Salt'
+    ],
+    steps: [
+      { title: 'Prepare the marinade', text: 'Whisk together yogurt, ginger, garlic, chili powder, garam masala, cumin, lemon juice, mustard oil, and salt in a large bowl until well combined.', modelUrl: '', fallbackShape: 'bowl' },
+      { title: 'Marinate the chicken', text: 'Add chicken pieces to the marinade and coat thoroughly. Cover and refrigerate for at least 4 hours, or overnight for best flavor.', modelUrl: '', fallbackShape: 'pot' },
+      { title: 'Prepare for grilling', text: 'Soak wooden skewers in water for 30 minutes. Preheat oven grill or broiler to high. Thread marinated chicken pieces evenly onto the skewers.', modelUrl: '', fallbackShape: 'pasta' },
+      { title: 'Grill and serve', text: 'Place skewers on a foil-lined baking sheet. Grill for 15 minutes total, turning halfway through, until edges are charred and chicken is cooked through.', modelUrl: '', fallbackShape: 'plate' },
+    ]
+  },
+  {
+    title: 'Rasmalai',
+    modelUrl: '',
+    fallbackShape: 'risotto',
+    ingredients: [
+      '1 litre full-cream milk (for chenna)',
+      '2 tbsp lemon juice',
+      '1 cup water (for squeezing)',
+      '1 cup sugar',
+      '4 cups water (for syrup)',
+      '1 litre full-cream milk (for rabri)',
+      '½ cup sugar (for rabri)',
+      '½ tsp cardamom powder',
+      '10 saffron strands',
+      '2 tbsp chopped pistachios and almonds'
+    ],
+    steps: [
+      { title: 'Make the chenna', text: 'Boil 1 litre milk in a pot. Add lemon juice gradually until milk curdles completely. Strain through cheesecloth. Rinse with cold water, squeeze out excess, and hang for 45 minutes.', modelUrl: '', fallbackShape: 'pot' },
+      { title: 'Knead and shape', text: 'Knead the drained chenna for 10 minutes until completely smooth. Divide into small balls and flatten into discs. Boil 1 cup sugar with 4 cups water to make thin syrup.', modelUrl: '', fallbackShape: 'bowl' },
+      { title: 'Cook the chenna discs', text: 'Drop chenna discs into boiling syrup. Cover and cook for 15 minutes. Remove and let cool. Meanwhile, boil second litre of milk for rabri until reduced to half.', modelUrl: '', fallbackShape: 'pot' },
+      { title: 'Finish and serve', text: 'Add ½ cup sugar, saffron, and cardamom to reduced milk. Simmer 5 minutes. Squeeze syrup from cooled discs and gently place in warm rabri. Garnish with pistachios and almonds. Chill 3 hours.', modelUrl: '', fallbackShape: 'plate' },
     ]
   },
 ];
 
-/* ============================================
-   STATE
-============================================ */
 let currentRecipe = 0;
 let currentStep = 0;
-const viewers = []; // keep refs for resize
+let inTutorialMode = false;
+const viewers = [];
 
-/* ============================================
-   LOADER
-============================================ */
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loader').classList.add('hidden');
   }, 800);
 });
 
-/* ============================================
-   PAGE SWITCHING
-============================================ */
 window.switchPage = function(pageName) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -98,37 +130,47 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
-/* ============================================
-   RECIPE NAVIGATION
-============================================ */
 window.openRecipe = function(index) {
   currentRecipe = index;
   currentStep = 0;
-  renderStep();
+  inTutorialMode = false;
   switchPage('detail');
+  renderIngredients();
 };
 
-window.nextStep = function() {
-  if (currentStep < recipes[currentRecipe].steps.length - 1) {
-    currentStep++;
-    renderStep();
-  }
+window.startTutorial = function() {
+  inTutorialMode = true;
+  renderTutorialStep();
 };
 
-window.prevStep = function() {
-  if (currentStep > 0) {
-    currentStep--;
-    renderStep();
-  }
-};
+function renderIngredients() {
+  const recipe = recipes[currentRecipe];
+  document.getElementById('ingredients-title').textContent = recipe.title;
+  
+  const list = document.getElementById('ingredients-list');
+  list.innerHTML = '';
+  
+  const ingredientsHtml = recipe.ingredients.map(ing => 
+    `<div class="ingredient-item">${ing}</div>`
+  ).join('');
+  
+  list.innerHTML = `
+    <div class="ingredients-title-small">${recipe.title}</div>
+    <div class="ingredients-items">
+      ${ingredientsHtml}
+    </div>
+  `;
+  
+  // Show ingredients view, hide tutorial
+  document.getElementById('ingredients-view').style.display = 'block';
+  document.getElementById('tutorial-view').style.display = 'none';
+}
 
-function renderStep() {
+function renderTutorialStep() {
   const recipe = recipes[currentRecipe];
   const step = recipe.steps[currentStep];
 
-  document.getElementById('detail-title').textContent = recipe.title;
-  document.getElementById('detail-meta').textContent = `Step ${currentStep + 1} of ${recipe.steps.length}`;
-  document.getElementById('step-num').textContent = String(currentStep + 1).padStart(2, '0');
+  document.getElementById('tutorial-meta').textContent = `Step ${currentStep + 1} of ${recipe.steps.length}`;
   document.getElementById('step-title').textContent = step.title;
   document.getElementById('step-text').textContent = step.text;
 
@@ -151,11 +193,30 @@ function renderStep() {
   const container = document.getElementById('step-canvas');
   container.innerHTML = '';
   createViewer(container, step.modelUrl, step.fallbackShape, /*isLarge*/ true);
+  
+  // Show tutorial view, hide ingredients
+  document.getElementById('ingredients-view').style.display = 'none';
+  document.getElementById('tutorial-view').style.display = 'block';
 }
 
-/* ============================================
-   THREE.JS VIEWER
-============================================ */
+window.nextStep = function() {
+  if (!inTutorialMode) {
+    startTutorial();
+    return;
+  }
+  if (currentStep < recipes[currentRecipe].steps.length - 1) {
+    currentStep++;
+    renderTutorialStep();
+  }
+};
+
+window.prevStep = function() {
+  if (currentStep > 0) {
+    currentStep--;
+    renderTutorialStep();
+  }
+};
+
 function createViewer(container, modelUrl, fallbackShape, isLarge = false) {
   const width = container.clientWidth || 300;
   const height = container.clientHeight || 300;
@@ -193,12 +254,15 @@ function createViewer(container, modelUrl, fallbackShape, isLarge = false) {
         group.add(gltf.scene);
         fitCameraToObject(camera, gltf.scene, controls);
       }, undefined, () => {
-        // On error, fall back to procedural shape
         group.add(makeFallback(fallbackShape));
+        applyStepAnimation(group, fallbackShape, currentRecipe, currentStep);
       });
     });
   } else {
     group.add(makeFallback(fallbackShape));
+    if (isLarge) {
+      applyStepAnimation(group, fallbackShape, currentRecipe, currentStep);
+    }
   }
 
   // Controls — drag to rotate, scroll to zoom
@@ -208,7 +272,7 @@ function createViewer(container, modelUrl, fallbackShape, isLarge = false) {
   controls.enablePan = false;
   controls.minDistance = 2;
   controls.maxDistance = 8;
-  controls.autoRotate = !isLarge; // gentle auto-spin on preview cards
+  controls.autoRotate = !isLarge;
   controls.autoRotateSpeed = 0.6;
 
   // Resize handling
@@ -222,6 +286,10 @@ function createViewer(container, modelUrl, fallbackShape, isLarge = false) {
   const ro = new ResizeObserver(resize);
   ro.observe(container);
 
+  // Animation state
+  let animationTime = 0;
+  let particles = [];
+
   // Animate
   function animate() {
     if (!container.isConnected) {
@@ -230,12 +298,32 @@ function createViewer(container, modelUrl, fallbackShape, isLarge = false) {
       return;
     }
     requestAnimationFrame(animate);
+    
+    animationTime += 0.016;
+    
+    particles.forEach((particle, index) => {
+      particle.position.y -= particle.velocity;
+      particle.opacity -= particle.opacityDecay;
+      particle.material.opacity = particle.opacity;
+      
+      if (particle.opacity <= 0) {
+        scene.remove(particle);
+        particles.splice(index, 1);
+      }
+    });
+    
+    group.children.forEach(child => {
+      if (child.userData.animationType) {
+        applyAnimation(child, child.userData.animationType, animationTime);
+      }
+    });
+    
     controls.update();
     renderer.render(scene, camera);
   }
   animate();
 
-  viewers.push({ container, renderer, camera, controls });
+  viewers.push({ container, renderer, camera, controls, scene, group, particles });
 }
 
 function fitCameraToObject(camera, object, controls) {
@@ -251,9 +339,83 @@ function fitCameraToObject(camera, object, controls) {
 }
 
 /* ============================================
-   PROCEDURAL FALLBACK SHAPES
-   (so the site works even before you add your own .glb files)
+   STEP ANIMATIONS
+   - Animate objects based on recipe and step
+   - Simple, subtle animations
 ============================================ */
+function applyStepAnimation(group, fallbackShape, recipeIdx, stepIdx) {
+  // Add animation metadata based on recipe and step
+  const animationMap = {
+    '0-0': 'gentle_rotate',
+    '0-1': 'subtle_tilt',
+    '0-2': 'slow_rotate',
+    '0-3': 'gentle_sway',
+    '1-0': 'gentle_rotate',
+    '1-1': 'subtle_rotate',
+    '1-2': 'gentle_sway',
+    '1-3': 'slow_rotate',
+    '2-0': 'gentle_rotate',
+    '2-1': 'subtle_sway',
+    '2-2': 'gentle_rotate',
+    '2-3': 'subtle_tilt',
+    '3-0': 'subtle_rotate',
+    '3-1': 'gentle_sway',
+    '3-2': 'slow_rotate',
+    '3-3': 'gentle_rotate',
+  };
+  
+  const animKey = `${recipeIdx}-${stepIdx}`;
+  const animType = animationMap[animKey];
+  
+  if (animType) {
+    group.children.forEach(child => {
+      child.userData.animationType = animType;
+      child.userData.baseRotation = {
+        x: child.rotation.x,
+        y: child.rotation.y,
+        z: child.rotation.z
+      };
+      child.userData.basePosition = {
+        x: child.position.x,
+        y: child.position.y,
+        z: child.position.z
+      };
+    });
+  }
+}
+
+function applyAnimation(object, type, time) {
+  const baseRot = object.userData.baseRotation || { x: 0, y: 0, z: 0 };
+  const basePos = object.userData.basePosition || { x: 0, y: 0, z: 0 };
+  
+  switch(type) {
+    case 'gentle_rotate':
+      object.rotation.y = baseRot.y + time * 0.3;
+      object.rotation.x = baseRot.x + Math.sin(time * 0.2) * 0.05;
+      break;
+      
+    case 'subtle_rotate':
+      object.rotation.y = baseRot.y + Math.sin(time * 0.4) * 0.15;
+      object.position.y = basePos.y + Math.sin(time * 0.5) * 0.08;
+      break;
+      
+    case 'slow_rotate':
+      object.rotation.y = baseRot.y + time * 0.15;
+      break;
+      
+    case 'subtle_tilt':
+      object.rotation.z = baseRot.z + Math.sin(time * 0.6) * 0.1;
+      object.rotation.x = baseRot.x + Math.sin(time * 0.4) * 0.08;
+      break;
+      
+    case 'gentle_sway':
+      object.position.x = basePos.x + Math.sin(time * 0.5) * 0.15;
+      object.rotation.z = baseRot.z + Math.sin(time * 0.5) * 0.08;
+      break;
+  }
+}
+
+
 function makeFallback(kind) {
   const g = new THREE.Group();
 
@@ -360,11 +522,8 @@ function makeFallback(kind) {
   return g;
 }
 
-/* ============================================
-   INIT VIEWERS ON VISIBLE PAGE
-============================================ */
 function initVisibleViewers() {
-  document.querySelectorAll('.page.active .three-canvas').forEach((el) => {
+  document.querySelectorAll('.page.active .three-canvas:not([data-preview])').forEach((el) => {
     if (el.dataset.initialized === 'true') return;
     el.dataset.initialized = 'true';
     const idx = parseInt(el.dataset.model, 10);
@@ -373,36 +532,28 @@ function initVisibleViewers() {
   });
 }
 
-/* ============================================
-   PARALLAX — cursor-driven, whole-site shift
-============================================ */
 const parallaxEl = document.getElementById('parallax');
 const navEl = document.querySelector('.nav-glass');
 let mouseX = 0, mouseY = 0;
 let targetX = 0, targetY = 0;
 
 document.addEventListener('mousemove', (e) => {
-  // Normalized -1 to 1
   mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
   mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
 });
 
 function parallaxLoop() {
-  // Smooth interpolation
   targetX += (mouseX - targetX) * 0.06;
   targetY += (mouseY - targetY) * 0.06;
 
-  // Main wrapper drift
-  const mx = -targetX * 18; // px
+  const mx = -targetX * 18;
   const my = -targetY * 14;
   parallaxEl.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
 
-  // Nav drifts slightly opposite for depth
   if (navEl) {
     navEl.style.transform = `translateX(calc(-50% + ${targetX * 6}px)) translateY(${targetY * 4}px)`;
   }
 
-  // Individual depth layers
   document.querySelectorAll('[data-depth]').forEach(el => {
     const d = parseFloat(el.dataset.depth) || 0.05;
     el.style.transform = `translate3d(${-targetX * 60 * d}px, ${-targetY * 50 * d}px, 0)`;
@@ -412,7 +563,4 @@ function parallaxLoop() {
 }
 parallaxLoop();
 
-/* ============================================
-   BOOT
-============================================ */
 initVisibleViewers();
